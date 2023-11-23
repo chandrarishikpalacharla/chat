@@ -1,5 +1,7 @@
 import 'package:chat/chatroom.dart';
+import 'package:chat/groupchascreen.dart';
 import 'package:chat/methods.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     setStatus("Online");
   }
 
@@ -152,6 +154,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     : Container(),
               ],
             ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.group),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => GroupChatHomeScreen(),
+          ),
+        ),
+      ),
     );
   }
 }
